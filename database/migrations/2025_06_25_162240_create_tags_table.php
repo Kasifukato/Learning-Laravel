@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
+        });
+
+        Schema::create('job_tags', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(\App\Models\Tag::class);
+            $table->foreignIdFor(\App\Models\Job::class, 'job_listing_id');
         });
     }
 
